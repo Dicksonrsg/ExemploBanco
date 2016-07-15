@@ -78,6 +78,65 @@ public class UsuarioDAO {
         }    
     return null;
     }
+    
+    public Usuario listarPorId(int id){
+        Usuario usuario = new Usuario();
+        sql = "SELECT * FROM tb_teste WHERE tst_id = ?";
+        
+        if(db.getConexao()){
+            try{
+                statement = db.conexao.prepareStatement(sql);
+                statement.setInt(1, id);
+                ResultSet resultSet = statement.executeQuery();
+                while(resultSet.next()){
+                    usuario.setId(resultSet.getInt("tst_id"));
+                    usuario.setNome(resultSet.getString("tst_nome"));
+                    usuario.setIdade(resultSet.getInt("tst_idade"));
+                
+                }
+                return usuario;
+            
+            }catch (SQLException erro){
+                System.out.println("Falha na operação!");
+                System.out.print("Erro: " + erro);
+                return null;
+            
+            }
+        
+        }
+    return null;
+    }
+    
+    public List<Usuario> listarPorNome(String nome){
+        List<Usuario> usuarios = new ArrayList();
+        sql = "SELECT * FROM tb_teste WHERE tst_nome LIKE ?";
+        nome = "%" + nome + "%";
+        
+        if(db.getConexao()){
+            try{
+                statement = db.conexao.prepareStatement(sql);
+                statement.setString(1, nome);
+                ResultSet resultSet = statement.executeQuery();
+                while(resultSet.next()){
+                    Usuario usuario = new Usuario();
+                    usuario.setId(resultSet.getInt("tst_id"));
+                    usuario.setNome(resultSet.getString("tst_nome"));
+                    usuario.setIdade(resultSet.getInt("tst_idade"));
+                }
+                resultSet.close();
+                
+            
+            }catch(SQLException erro){
+                System.out.println("Falha na operação!");
+                System.out.print("Erro: " + erro);
+                return null;           
+            
+            }
+        
+        }
+        return null;
+    
+    }
 }
 
     

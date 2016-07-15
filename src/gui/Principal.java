@@ -12,6 +12,9 @@ public class Principal {
         UsuarioDAO dao = new UsuarioDAO();
         Usuario usuario  = new Usuario();
         
+       for(Usuario us : dao.listarPorNome("john")){
+           System.out.println(us.toString());
+       }
 //        usuario.setNome( JOptionPane.showInputDialog("Nome do Usuário"));
 //        
 //        usuario.setIdade(Integer.parseInt(JOptionPane.showInputDialog("Idade do Usuário")));
@@ -26,10 +29,13 @@ public class Principal {
 //        
 //    } else {JOptionPane.showMessageDialog(null, "Falha!");}
     
-    String texto = null;
-    for (Usuario u: dao.ListarTudo()){
-         texto += u.getId() + "\t" + u.getNome() + "\t" + u.getIdade() + "\n";
-    
-    }
+//    String texto = null;
+//    for (Usuario u: dao.ListarTudo()){
+//         texto += u.getId() + "\t" + u.getNome() + "\t" + u.getIdade() + "\n";
+//    
+//    }
+        
+        
 }
+    
 }
